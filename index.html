@@ -9,6 +9,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+        :root {
+            --blue: #2736d8;
+            --blue-dark: #18239b;
+            --blue-light: #eef0ff;
+            --text: #171b2d;
+            --muted: #73798c;
+            --border: #e8eaf1;
+            --background: #f6f7fb;
+            --white: #ffffff;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,163 +27,218 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f4f7fb;
-            color: #172033;
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
             min-height: 100vh;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
-            background: #ffffff;
-            border-bottom: 1px solid #e6eaf0;
-            padding: 24px 7%;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
         }
 
-        .header-content {
-            max-width: 1100px;
+        .header-inner {
+            max-width: 1150px;
             margin: auto;
+            padding: 15px 25px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 21px;
+        .brand-text h1 {
+            font-size: 17px;
             font-weight: 800;
+            letter-spacing: -0.3px;
         }
 
-        .logo-text h1 {
-            font-size: 18px;
+        .brand-text p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .level-badge {
+            background: var(--blue-light);
+            color: var(--blue);
+            border: 1px solid #dfe2ff;
+            padding: 9px 15px;
+            border-radius: 999px;
+            font-size: 12px;
             font-weight: 700;
+            white-space: nowrap;
         }
 
-        .logo-text p {
-            font-size: 12px;
-            color: #7b8494;
-            margin-top: 2px;
-        }
-
-        .badge {
-            background: #eff6ff;
-            color: #2563eb;
-            padding: 8px 13px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* MAIN */
+        /* =========================
+           MAIN
+        ========================= */
 
         main {
-            max-width: 1100px;
-            margin: 0 auto;
+            max-width: 1050px;
+            margin: auto;
             padding: 55px 25px 70px;
         }
 
-        .intro {
+        .hero {
             margin-bottom: 35px;
         }
 
-        .intro span {
-            color: #2563eb;
-            font-size: 13px;
-            font-weight: 700;
+        .eyebrow {
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.4px;
+            margin-bottom: 10px;
         }
 
-        .intro h2 {
-            font-size: 38px;
-            margin-top: 8px;
-            letter-spacing: -1.5px;
+        .hero h2 {
+            font-size: clamp(30px, 5vw, 42px);
+            line-height: 1.1;
+            letter-spacing: -1.8px;
+            font-weight: 800;
         }
 
-        .intro p {
-            color: #70798a;
-            margin-top: 10px;
-            font-size: 15px;
+        .hero h2 span {
+            color: var(--blue);
         }
 
-        /* PLANNING */
+        .hero p {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PLANNING
+        ========================= */
 
         .planning {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
         }
 
         .day {
-            background: white;
-            border: 1px solid #e7ebf1;
-            border-radius: 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 5px 20px rgba(30, 45, 70, 0.05);
+
+            box-shadow:
+                0 8px 25px rgba(24, 35, 80, 0.045);
+
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease;
         }
+
+        .day:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(24, 35, 80, 0.08);
+        }
+
+        /* =========================
+           DAY HEADER
+        ========================= */
 
         .day-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding-bottom: 20px;
-            border-bottom: 1px solid #edf0f4;
             margin-bottom: 20px;
+
+            border-bottom: 1px solid #eef0f5;
         }
 
         .day-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
         }
 
         .day-icon {
-            width: 40px;
-            height: 40px;
-            background: #eff6ff;
-            color: #2563eb;
-            border-radius: 11px;
+            width: 43px;
+            height: 43px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            background: var(--blue-light);
+            color: var(--blue);
+
+            border-radius: 13px;
             font-size: 19px;
         }
 
         .day h3 {
-            font-size: 20px;
+            font-size: 19px;
+            font-weight: 800;
         }
 
-        .day-date {
-            color: #98a1b1;
-            font-size: 12px;
+        .day-subtitle {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
-        /* COURS */
+        /* =========================
+           COURSES
+        ========================= */
 
         .course {
+            position: relative;
+
             display: flex;
             align-items: center;
-            gap: 16px;
+
+            gap: 15px;
+
             padding: 17px;
-            border-radius: 13px;
-            background: #f8fafc;
+
             margin-bottom: 12px;
-            border: 1px solid #eef1f5;
-            transition: all 0.2s ease;
+
+            background: #fafbfe;
+
+            border: 1px solid #edf0f5;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .course:last-child {
@@ -180,29 +246,33 @@
         }
 
         .course:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(30, 45, 70, 0.08);
+            background: #ffffff;
+            transform: translateX(3px);
+
+            box-shadow:
+                0 7px 20px rgba(20, 30, 70, 0.07);
         }
 
-        .course-color {
+        .course-line {
             width: 5px;
-            height: 50px;
-            border-radius: 5px;
+            min-width: 5px;
+            height: 48px;
+            border-radius: 20px;
         }
 
-        .blue {
+        .svt {
             background: #2563eb;
         }
 
-        .purple {
+        .physique {
             background: #7c3aed;
         }
 
-        .orange {
+        .francais {
             background: #ea580c;
         }
 
-        .green {
+        .maths {
             background: #16a34a;
         }
 
@@ -211,55 +281,132 @@
         }
 
         .course-name {
-            font-weight: 700;
             font-size: 15px;
+            font-weight: 750;
+            color: var(--text);
         }
 
         .course-time {
-            color: #7d8797;
-            font-size: 13px;
             margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 500;
         }
 
         .course-time::before {
-            content: "◷ ";
+            content: "◷";
+            margin-right: 6px;
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
-            color: #9aa2af;
-            font-size: 12px;
-            padding-bottom: 30px;
+            padding: 0 20px 30px;
+
+            color: #9aa0b1;
+            font-size: 11px;
         }
 
-        /* MOBILE */
+        footer strong {
+            color: #777d8f;
+        }
 
-        @media (max-width: 700px) {
+        /* =========================
+           TABLETTE
+        ========================= */
 
-            header {
-                padding: 18px 20px;
-            }
-
-            .badge {
-                display: none;
-            }
-
-            main {
-                padding: 35px 18px 50px;
-            }
-
-            .intro h2 {
-                font-size: 30px;
-            }
+        @media (max-width: 800px) {
 
             .planning {
                 grid-template-columns: 1fr;
             }
 
+            main {
+                padding-top: 40px;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 520px) {
+
+            .header-inner {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand-text h1 {
+                font-size: 14px;
+            }
+
+            .brand-text p {
+                font-size: 10px;
+            }
+
+            .level-badge {
+                display: none;
+            }
+
+            main {
+                padding: 32px 15px 50px;
+            }
+
+            .hero {
+                margin-bottom: 25px;
+            }
+
+            .hero h2 {
+                font-size: 29px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
             .day {
-                padding: 20px;
+                padding: 18px;
+                border-radius: 17px;
+            }
+
+            .day h3 {
+                font-size: 17px;
+            }
+
+            .course {
+                padding: 15px;
+            }
+
+            .course-name {
+                font-size: 14px;
+            }
+        }
+
+        /* =========================
+           PETITS TELEPHONES
+        ========================= */
+
+        @media (max-width: 360px) {
+
+            .brand-text {
+                display: none;
+            }
+
+            .brand {
+                margin: auto;
+            }
+
+            .hero h2 {
+                font-size: 26px;
             }
         }
     </style>
@@ -267,156 +414,193 @@
 
 <body>
 
-<header>
-    <div class="header-content">
+    <!-- HEADER -->
 
-        <div class="logo">
-            <div class="logo-icon">EDT</div>
+    <header>
+        <div class="header-inner">
 
-            <div class="logo-text">
-                <h1>Emploi du temps</h1>
-                <p>Première Générale</p>
+            <div class="brand">
+
+                <img
+                    class="logo"
+                    src="https://bftunis.com/wp-content/uploads/2026/06/icon-512.png"
+                    alt="BFT Education Group"
+                >
+
+                <div class="brand-text">
+                    <h1>BFT Education Group</h1>
+                    <p>Emploi du temps</p>
+                </div>
+
             </div>
+
+            <div class="level-badge">
+                Première Générale
+            </div>
+
         </div>
-
-        <div class="badge">
-            Année scolaire
-        </div>
-
-    </div>
-</header>
+    </header>
 
 
-<main>
+    <!-- CONTENU -->
 
-    <div class="intro">
-        <span>Planning des cours</span>
+    <main>
 
-        <h2>Mon emploi du temps</h2>
+        <section class="hero">
 
-        <p>
-            Retrouvez ici les horaires de vos cours du week-end.
-        </p>
-    </div>
-
-
-    <div class="planning">
-
-        <!-- SAMEDI -->
-
-        <section class="day">
-
-            <div class="day-header">
-
-                <div class="day-title">
-                    <div class="day-icon">☀</div>
-
-                    <div>
-                        <h3>Samedi</h3>
-                        <div class="day-date">Week-end</div>
-                    </div>
-                </div>
-
+            <div class="eyebrow">
+                Planning des cours
             </div>
 
+            <h2>
+                Première <span>Générale</span>
+            </h2>
 
-            <div class="course">
-
-                <div class="course-color blue"></div>
-
-                <div class="course-info">
-                    <div class="course-name">
-                        SVT
-                    </div>
-
-                    <div class="course-time">
-                        15h00 — 17h00
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="course">
-
-                <div class="course-color purple"></div>
-
-                <div class="course-info">
-                    <div class="course-name">
-                        Physique-Chimie
-                    </div>
-
-                    <div class="course-time">
-                        17h00 — 19h00
-                    </div>
-                </div>
-
-            </div>
+            <p>
+                Retrouvez votre emploi du temps du week-end
+                et les horaires de chaque cours.
+            </p>
 
         </section>
 
 
-        <!-- DIMANCHE -->
+        <section class="planning">
 
-        <section class="day">
+            <!-- SAMEDI -->
 
-            <div class="day-header">
+            <article class="day">
 
-                <div class="day-title">
-                    <div class="day-icon">☀</div>
+                <div class="day-header">
 
-                    <div>
-                        <h3>Dimanche</h3>
-                        <div class="day-date">Week-end</div>
+                    <div class="day-title">
+
+                        <div class="day-icon">
+                            ☀
+                        </div>
+
+                        <div>
+                            <h3>Samedi</h3>
+                            <div class="day-subtitle">
+                                2 cours
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
-            </div>
 
+                <div class="course">
 
-            <div class="course">
+                    <div class="course-line svt"></div>
 
-                <div class="course-color orange"></div>
+                    <div class="course-info">
 
-                <div class="course-info">
-                    <div class="course-name">
-                        Français
+                        <div class="course-name">
+                            SVT
+                        </div>
+
+                        <div class="course-time">
+                            15h00 — 17h00
+                        </div>
+
                     </div>
 
-                    <div class="course-time">
-                        14h00 — 16h00
-                    </div>
                 </div>
 
-            </div>
 
+                <div class="course">
 
-            <div class="course">
+                    <div class="course-line physique"></div>
 
-                <div class="course-color green"></div>
+                    <div class="course-info">
 
-                <div class="course-info">
-                    <div class="course-name">
-                        Mathématiques
+                        <div class="course-name">
+                            Physique-Chimie
+                        </div>
+
+                        <div class="course-time">
+                            17h00 — 19h00
+                        </div>
+
                     </div>
 
-                    <div class="course-time">
-                        16h00 — 18h00
-                    </div>
                 </div>
 
-            </div>
+            </article>
+
+
+            <!-- DIMANCHE -->
+
+            <article class="day">
+
+                <div class="day-header">
+
+                    <div class="day-title">
+
+                        <div class="day-icon">
+                            ☀
+                        </div>
+
+                        <div>
+                            <h3>Dimanche</h3>
+                            <div class="day-subtitle">
+                                2 cours
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course">
+
+                    <div class="course-line francais"></div>
+
+                    <div class="course-info">
+
+                        <div class="course-name">
+                            Français
+                        </div>
+
+                        <div class="course-time">
+                            14h00 — 16h00
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="course">
+
+                    <div class="course-line maths"></div>
+
+                    <div class="course-info">
+
+                        <div class="course-name">
+                            Mathématiques
+                        </div>
+
+                        <div class="course-time">
+                            16h00 — 18h00
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
 
         </section>
 
-    </div>
-
-</main>
+    </main>
 
 
-<footer>
-    Première Générale · Emploi du temps
-</footer>
+    <footer>
+        <strong>BFT Education Group</strong> · Première Générale
+    </footer>
 
 </body>
 </html>
