@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon emploi du temps</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 35px;
+        }
+
+        .planning {
+            max-width: 800px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .jour {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .jour h2 {
+            text-align: center;
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .cours {
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .cours:last-child {
+            margin-bottom: 0;
+        }
+
+        .svt {
+            background: #2ecc71;
+        }
+
+        .physique {
+            background: #3498db;
+        }
+
+        .francais {
+            background: #e67e22;
+        }
+
+        .maths {
+            background: #e74c3c;
+        }
+
+        .matiere {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .horaire {
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 650px) {
+            .planning {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📚 Mon emploi du temps</h1>
+
+    <div class="planning">
+
+        <div class="jour">
+            <h2>Samedi</h2>
+
+            <div class="cours svt">
+                <div class="matiere">SVT</div>
+                <div class="horaire">15h00 - 17h00</div>
+            </div>
+
+            <div class="cours physique">
+                <div class="matiere">Physique-Chimie</div>
+                <div class="horaire">17h00 - 19h00</div>
+            </div>
+        </div>
+
+        <div class="jour">
+            <h2>Dimanche</h2>
+
+            <div class="cours francais">
+                <div class="matiere">Français</div>
+                <div class="horaire">14h00 - 16h00</div>
+            </div>
+
+            <div class="cours maths">
+                <div class="matiere">Maths</div>
+                <div class="horaire">16h00 - 18h00</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
