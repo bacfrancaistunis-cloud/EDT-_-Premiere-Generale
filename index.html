@@ -3,90 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon emploi du temps</title>
+
+    <title>Emploi du temps — Première Générale</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fb;
+            color: #172033;
             min-height: 100vh;
-            padding: 40px 20px;
         }
 
-        h1 {
-            text-align: center;
+        /* HEADER */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e6eaf0;
+            padding: 24px 7%;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #2563eb;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #7b8494;
+            margin-top: 2px;
+        }
+
+        .badge {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 25px 70px;
+        }
+
+        .intro {
             margin-bottom: 35px;
         }
 
+        .intro span {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intro h2 {
+            font-size: 38px;
+            margin-top: 8px;
+            letter-spacing: -1.5px;
+        }
+
+        .intro p {
+            color: #70798a;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* PLANNING */
+
         .planning {
-            max-width: 800px;
-            margin: auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
         }
 
-        .jour {
+        .day {
             background: white;
-            border-radius: 15px;
+            border: 1px solid #e7ebf1;
+            border-radius: 18px;
             padding: 25px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(30, 45, 70, 0.05);
         }
 
-        .jour h2 {
-            text-align: center;
-            color: #667eea;
-            margin-top: 0;
+        .day-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #edf0f4;
             margin-bottom: 20px;
         }
 
-        .cours {
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            color: white;
+        .day-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .cours:last-child {
+        .day-icon {
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .day h3 {
+            font-size: 20px;
+        }
+
+        .day-date {
+            color: #98a1b1;
+            font-size: 12px;
+        }
+
+        /* COURS */
+
+        .course {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 17px;
+            border-radius: 13px;
+            background: #f8fafc;
+            margin-bottom: 12px;
+            border: 1px solid #eef1f5;
+            transition: all 0.2s ease;
+        }
+
+        .course:last-child {
             margin-bottom: 0;
         }
 
-        .svt {
-            background: #2ecc71;
+        .course:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(30, 45, 70, 0.08);
         }
 
-        .physique {
-            background: #3498db;
+        .course-color {
+            width: 5px;
+            height: 50px;
+            border-radius: 5px;
         }
 
-        .francais {
-            background: #e67e22;
+        .blue {
+            background: #2563eb;
         }
 
-        .maths {
-            background: #e74c3c;
+        .purple {
+            background: #7c3aed;
         }
 
-        .matiere {
-            font-size: 18px;
-            font-weight: bold;
+        .orange {
+            background: #ea580c;
         }
 
-        .horaire {
+        .green {
+            background: #16a34a;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .course-time {
+            color: #7d8797;
+            font-size: 13px;
             margin-top: 5px;
-            opacity: 0.9;
         }
 
-        @media (max-width: 650px) {
+        .course-time::before {
+            content: "◷ ";
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            color: #9aa2af;
+            font-size: 12px;
+            padding-bottom: 30px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 20px;
+            }
+
+            .badge {
+                display: none;
+            }
+
+            main {
+                padding: 35px 18px 50px;
+            }
+
+            .intro h2 {
+                font-size: 30px;
+            }
+
             .planning {
                 grid-template-columns: 1fr;
+            }
+
+            .day {
+                padding: 20px;
             }
         }
     </style>
@@ -94,39 +267,156 @@
 
 <body>
 
-    <h1>📚 Mon emploi du temps</h1>
+<header>
+    <div class="header-content">
 
-    <div class="planning">
+        <div class="logo">
+            <div class="logo-icon">EDT</div>
 
-        <div class="jour">
-            <h2>Samedi</h2>
-
-            <div class="cours svt">
-                <div class="matiere">SVT</div>
-                <div class="horaire">15h00 - 17h00</div>
-            </div>
-
-            <div class="cours physique">
-                <div class="matiere">Physique-Chimie</div>
-                <div class="horaire">17h00 - 19h00</div>
+            <div class="logo-text">
+                <h1>Emploi du temps</h1>
+                <p>Première Générale</p>
             </div>
         </div>
 
-        <div class="jour">
-            <h2>Dimanche</h2>
-
-            <div class="cours francais">
-                <div class="matiere">Français</div>
-                <div class="horaire">14h00 - 16h00</div>
-            </div>
-
-            <div class="cours maths">
-                <div class="matiere">Maths</div>
-                <div class="horaire">16h00 - 18h00</div>
-            </div>
+        <div class="badge">
+            Année scolaire
         </div>
 
     </div>
+</header>
+
+
+<main>
+
+    <div class="intro">
+        <span>Planning des cours</span>
+
+        <h2>Mon emploi du temps</h2>
+
+        <p>
+            Retrouvez ici les horaires de vos cours du week-end.
+        </p>
+    </div>
+
+
+    <div class="planning">
+
+        <!-- SAMEDI -->
+
+        <section class="day">
+
+            <div class="day-header">
+
+                <div class="day-title">
+                    <div class="day-icon">☀</div>
+
+                    <div>
+                        <h3>Samedi</h3>
+                        <div class="day-date">Week-end</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-color blue"></div>
+
+                <div class="course-info">
+                    <div class="course-name">
+                        SVT
+                    </div>
+
+                    <div class="course-time">
+                        15h00 — 17h00
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-color purple"></div>
+
+                <div class="course-info">
+                    <div class="course-name">
+                        Physique-Chimie
+                    </div>
+
+                    <div class="course-time">
+                        17h00 — 19h00
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIMANCHE -->
+
+        <section class="day">
+
+            <div class="day-header">
+
+                <div class="day-title">
+                    <div class="day-icon">☀</div>
+
+                    <div>
+                        <h3>Dimanche</h3>
+                        <div class="day-date">Week-end</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-color orange"></div>
+
+                <div class="course-info">
+                    <div class="course-name">
+                        Français
+                    </div>
+
+                    <div class="course-time">
+                        14h00 — 16h00
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-color green"></div>
+
+                <div class="course-info">
+                    <div class="course-name">
+                        Mathématiques
+                    </div>
+
+                    <div class="course-time">
+                        16h00 — 18h00
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer>
+    Première Générale · Emploi du temps
+</footer>
 
 </body>
 </html>
