@@ -64,6 +64,11 @@
             50% { transform: translateY(-2px); }
         }
 
+        @keyframes hintPulse {
+            0%, 100% { opacity: 0.7; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(3px); }
+        }
+
         /* HEADER */
         header {
             background: rgba(255, 255, 255, 0.96);
@@ -182,7 +187,7 @@
         .notice-description { color: #a16207; font-size: 11px; line-height: 1.5; }
 
         /* =====================================================
-           TABLEAU – DESIGN PROFESSIONNEL
+           TABLEAU — DESIGN PROFESSIONNEL
         ====================================================== */
 
         .planning {
@@ -198,11 +203,22 @@
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #c1c5d4 transparent;
+        }
+
+        .table-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: #c1c5d4;
+            border-radius: 4px;
         }
 
         .schedule {
             width: 100%;
-            min-width: 900px;
+            min-width: 1050px;
             border-collapse: collapse;
             table-layout: fixed;
         }
@@ -215,19 +231,15 @@
             border-bottom: 2px solid #d1d5e4;
             font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.9px;
             text-align: center;
             vertical-align: middle;
-            white-space: nowrap;
+            padding: 6px 4px;
             position: relative;
         }
 
         .schedule thead th:first-child {
-            width: 115px;
+            width: 105px;
             background: linear-gradient(180deg, #eceef6 0%, #e4e6f0 100%);
-            color: #73798c;
-            font-size: 10px;
         }
 
         .schedule thead th + th {
@@ -235,7 +247,6 @@
         }
 
         .schedule thead th.today-header {
-            color: var(--blue);
             background: linear-gradient(180deg, #eef0ff 0%, #e4e7fc 100%);
         }
 
@@ -254,7 +265,6 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            text-transform: none;
             letter-spacing: -0.1px;
             color: #171b2d;
         }
@@ -267,7 +277,6 @@
             display: block;
             font-size: 9px;
             font-weight: 600;
-            margin-top: 1px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             color: #a0a5b8;
@@ -275,14 +284,14 @@
 
         /* COLONNE HORAIRES */
         .schedule tbody th {
-            width: 115px;
-            height: 82px;
+            width: 105px;
+            height: 90px;
             background: #f8f9fd;
             border-bottom: 1px solid #e4e6f0;
             border-right: 2px solid #d1d5e4;
             text-align: center;
             vertical-align: middle;
-            padding: 0 8px;
+            padding: 0 6px;
         }
 
         .schedule tbody th .time-main {
@@ -303,12 +312,12 @@
 
         /* CELLULES */
         .schedule tbody td {
-            height: 82px;
+            height: 90px;
             border-bottom: 1px solid #eceef5;
             border-left: 1px solid #eceef5;
             text-align: center;
             vertical-align: middle;
-            padding: 6px;
+            padding: 5px;
             position: relative;
             transition: background 0.2s ease;
         }
@@ -319,10 +328,6 @@
 
         .schedule tbody tr:hover td:not([rowspan]) {
             background: #f8f9fe;
-        }
-
-        .schedule tbody tr:hover td.today-col:not([rowspan]) {
-            background: rgba(39, 54, 216, 0.035);
         }
 
         .schedule tbody td:empty::after {
@@ -343,8 +348,9 @@
         /* BLOCS COURS */
         .course-block {
             height: 100%;
+            width: 100%;
             border-radius: 10px;
-            padding: 12px 10px;
+            padding: 10px 8px 10px 14px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -374,31 +380,36 @@
         }
 
         .course-block .cb-name {
-            margin-left: 12px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.2px;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+            width: 100%;
         }
 
         .course-block .cb-details {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-left: 12px;
+            flex-wrap: wrap;
+            gap: 5px;
             margin-top: 6px;
+            width: 100%;
         }
 
         .course-block .cb-badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 3px 8px;
+            gap: 3px;
+            padding: 3px 7px;
             border-radius: 5px;
             font-size: 10px;
             font-weight: 700;
-            background: rgba(255,255,255,0.55);
+            background: rgba(255,255,255,0.6);
             backdrop-filter: blur(4px);
+            white-space: nowrap;
         }
 
         .course-block .cb-badge svg {
@@ -410,50 +421,39 @@
         .course-block .cb-time {
             font-size: 10px;
             font-weight: 500;
-            opacity: 0.7;
+            opacity: 0.75;
+            white-space: nowrap;
         }
 
         /* Maths */
-        .cb-maths {
-            background: var(--maths);
-            border-color: rgba(43, 122, 90, 0.2);
-        }
+        .cb-maths { background: var(--maths); border-color: rgba(43, 122, 90, 0.2); }
         .cb-maths::before { background: #2b7a5a; }
         .cb-maths .cb-name { color: #0f5132; }
         .cb-maths .cb-badge { color: #0f5132; }
         .cb-maths .cb-time { color: #1a6b45; }
 
         /* SVT */
-        .cb-svt {
-            background: var(--svt);
-            border-color: rgba(201, 146, 14, 0.2);
-        }
+        .cb-svt { background: var(--svt); border-color: rgba(201, 146, 14, 0.2); }
         .cb-svt::before { background: #c9920e; }
         .cb-svt .cb-name { color: #7a5a0a; }
         .cb-svt .cb-badge { color: #7a5a0a; }
         .cb-svt .cb-time { color: #92700e; }
 
         /* Français */
-        .cb-francais {
-            background: var(--francais);
-            border-color: rgba(201, 104, 48, 0.2);
-        }
+        .cb-francais { background: var(--francais); border-color: rgba(201, 104, 48, 0.2); }
         .cb-francais::before { background: #c96830; }
         .cb-francais .cb-name { color: #7c3a12; }
         .cb-francais .cb-badge { color: #7c3a12; }
         .cb-francais .cb-time { color: #9a4a1a; }
 
         /* Physique */
-        .cb-physique {
-            background: var(--physique);
-            border-color: rgba(140, 106, 88, 0.2);
-        }
+        .cb-physique { background: var(--physique); border-color: rgba(140, 106, 88, 0.2); }
         .cb-physique::before { background: #8c6a58; }
         .cb-physique .cb-name { color: #4d3526; }
         .cb-physique .cb-badge { color: #4d3526; }
         .cb-physique .cb-time { color: #5c3d31; }
 
-        /* LÉGENDE INTÉGRÉE */
+        /* LÉGENDE */
         .table-footer {
             display: flex;
             align-items: center;
@@ -498,19 +498,27 @@
             color: #73798c;
         }
 
-        .total-label strong {
-            color: #3d4663;
-        }
+        .total-label strong { color: #3d4663; }
 
         /* SCROLL HINT */
         .scroll-hint {
             display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             padding: 10px 15px;
-            color: var(--muted);
-            background: #fafbfe;
-            border-top: 1px solid #e8eaf1;
+            color: var(--blue);
+            background: #eef0ff;
+            border-bottom: 1px solid #dfe2ff;
             text-align: center;
-            font-size: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .scroll-hint svg {
+            width: 14px;
+            height: 14px;
+            animation: hintPulse 1.5s ease-in-out infinite;
         }
 
         /* FOOTER */
@@ -525,12 +533,15 @@
         footer strong { color: #777d8f; }
 
         /* TABLETTE */
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
             main { padding-top: 38px; }
-            .schedule { min-width: 850px; }
         }
 
         /* MOBILE */
+        @media (max-width: 680px) {
+            .scroll-hint { display: flex; }
+        }
+
         @media (max-width: 520px) {
             .header-inner { padding: 12px 16px; }
             .logo { width: 48px; height: 48px; }
@@ -544,15 +555,6 @@
             .notice { padding: 12px; }
             .notice-description { font-size: 10px; }
             .planning { border-radius: 10px; }
-            .schedule { min-width: 820px; }
-            .schedule thead th { height: 44px; }
-            .schedule thead th .day-full { font-size: 11px; }
-            .schedule tbody th { height: 72px; }
-            .schedule tbody th .time-main { font-size: 12px; }
-            .schedule tbody td { height: 72px; padding: 4px; }
-            .course-block .cb-name { font-size: 11px; }
-            .course-block .cb-badge { font-size: 9px; }
-            .scroll-hint { display: block; }
             .table-footer { padding: 12px 14px; gap: 8px; }
             .legend { gap: 10px; }
             .legend-item { font-size: 10px; }
@@ -562,7 +564,6 @@
             .brand-text { display: none; }
             .brand { margin: auto; }
             .hero h2 { font-size: 26px; }
-            .schedule { min-width: 800px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -606,6 +607,13 @@
         </div>
 
         <section class="planning">
+
+            <div class="scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                Faites glisser horizontalement pour tout voir
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+
             <div class="table-scroll">
                 <table class="schedule" id="timetable">
                     <thead>
@@ -622,7 +630,6 @@
                     </thead>
                     <tbody>
 
-                        <!-- 14h – 15h -->
                         <tr>
                             <th><span class="time-main">14h00</span><span class="time-end">15h00</span></th>
                             <td data-day="1"></td>
@@ -639,13 +646,12 @@
                                             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v4l2.5 1.5"/></svg>
                                             2h
                                         </span>
-                                        <span class="cb-time">14h00 – 16h00</span>
+                                        <span class="cb-time">14h – 16h</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
-                        <!-- 15h – 16h -->
                         <tr>
                             <th><span class="time-main">15h00</span><span class="time-end">16h00</span></th>
                             <td data-day="1"></td>
@@ -661,13 +667,12 @@
                                             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v4l2.5 1.5"/></svg>
                                             2h
                                         </span>
-                                        <span class="cb-time">15h00 – 17h00</span>
+                                        <span class="cb-time">15h – 17h</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
-                        <!-- 16h – 17h -->
                         <tr>
                             <th><span class="time-main">16h00</span><span class="time-end">17h00</span></th>
                             <td data-day="1"></td>
@@ -683,13 +688,12 @@
                                             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v4l2.5 1.5"/></svg>
                                             2h
                                         </span>
-                                        <span class="cb-time">16h00 – 18h00</span>
+                                        <span class="cb-time">16h – 18h</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
-                        <!-- 17h – 18h -->
                         <tr>
                             <th><span class="time-main">17h00</span><span class="time-end">18h00</span></th>
                             <td data-day="1"></td>
@@ -705,13 +709,12 @@
                                             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v4l2.5 1.5"/></svg>
                                             2h
                                         </span>
-                                        <span class="cb-time">17h00 – 19h00</span>
+                                        <span class="cb-time">17h – 19h</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
-                        <!-- 18h – 19h -->
                         <tr>
                             <th><span class="time-main">18h00</span><span class="time-end">19h00</span></th>
                             <td data-day="1"></td>
@@ -722,7 +725,6 @@
                             <td data-day="0"></td>
                         </tr>
 
-                        <!-- 19h – 21h -->
                         <tr>
                             <th><span class="time-main">19h00</span><span class="time-end">21h00</span></th>
                             <td data-day="1"></td>
@@ -748,7 +750,6 @@
                 <div class="total-label">Volume : <strong>8 h / semaine</strong></div>
             </div>
 
-            <div class="scroll-hint">← Faites glisser horizontalement pour voir tout le tableau →</div>
         </section>
 
     </main>
